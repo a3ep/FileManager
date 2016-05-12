@@ -1,12 +1,14 @@
 package net.bondar.manager;
 
-import net.bondar.manager.interfaces.IFileCopier;
-import net.bondar.manager.utils.FileCopier;
+import net.bondar.manager.executors.ExecutorFactory;
+import net.bondar.manager.interfaces.IExecutorFactory;
 import net.bondar.parser.CommandFinder;
 import net.bondar.parser.IParserService;
 import net.bondar.parser.ParserService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+
+import java.util.Arrays;
 
 /**
  * The application starting point.
@@ -22,10 +24,10 @@ public class Main {
         try {
             CommandFinder commandFinder = new CommandFinder();
             IParserService parserService = new ParserService(commandFinder);
-            IFileCopier fileCopier = new FileCopier();
-            new Service(parserService, fileCopier).run();
-        }catch (Throwable t){
-            log.fatal("Unexpected application error. Message: " + t.getMessage());
+            IExecutorFactory executorFactory = new ExecutorFactory();
+            new FileManagerService(parserService, executorFactory).run();
+        } catch (Throwable t) {
+            log.fatal("Unexpected application error. Message: " + Arrays.toString(t.getStackTrace()));
         }
     }
 }

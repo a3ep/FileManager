@@ -1,7 +1,6 @@
 package net.bondar.parser;
 
 import net.bondar.manager.Command;
-import net.bondar.parser.ParsingException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

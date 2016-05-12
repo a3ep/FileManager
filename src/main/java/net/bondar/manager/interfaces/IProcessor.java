@@ -3,7 +3,7 @@ package net.bondar.manager.interfaces;
 /**
  * Provides file operation processing.
  */
-public interface IOperationProcessor {
+public interface IProcessor {
 
     /**
      * Processes file operation.

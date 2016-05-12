@@ -1,46 +1,47 @@
 package net.bondar.manager.exceptions;
 
 /**
- * Custom application exception.
+ * Custom exception for errors occurred while reading configurations.
  */
-public class FileManagerException extends RuntimeException{
+public class ConfigurationException extends RuntimeException {
 
     /**
-     * Creates <code>FileManagerException</code> instance.
+     * Creates <code>ConfigurationException</code> instance.
      */
-    public FileManagerException() {
+    public ConfigurationException() {
         super();
     }
 
     /**
-     * Creates <code>FileManagerException</code> instance.
+     * Creates <code>ConfigurationException</code> instance.
      *
      * @param message the detail error message
      */
-    public FileManagerException(String message) {
+    public ConfigurationException(String message) {
         super(message);
     }
 
     /**
-     * Creates <code>FileManagerException</code> instance.
+     * Creates <code>ConfigurationException</code> instance.
      *
      * @param message the detail error message
      * @param cause   the cause of exception
      */
-    public FileManagerException(String message, Throwable cause) {
+    public ConfigurationException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Creates <code>FileManagerException</code> instance.
+     * Creates <code>ConfigurationException</code> instance.
      *
      * @param cause the cause of exception
      */
-    public FileManagerException(Throwable cause) {
+    public ConfigurationException(Throwable cause) {
         super(cause);
     }
+
     /**
-     * Creates <code>FileManagerException</code> instance.
+     * Creates <code>ConfigurationException</code> instance.
      *
      * @param message            the detail error message
      * @param cause              the cause of exception
@@ -48,7 +49,8 @@ public class FileManagerException extends RuntimeException{
      * @param writableStackTrace whether or not the stack trace should be writable
      */
 
-    protected FileManagerException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected ConfigurationException(String message, Throwable cause, boolean enableSuppression,
+                                     boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

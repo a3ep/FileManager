@@ -1,47 +1,47 @@
-package net.bondar.parser;
+package net.bondar.manager.exceptions;
 
 /**
- * Custom exception for errors occurred while parsing user input.
+ * Custom exception for errors occurred while processing commands.
  */
-public class ParsingException extends RuntimeException {
+public class ProcessingException extends RuntimeException {
 
     /**
-     * Creates <code>ParsingException</code> instance.
+     * Creates <code>ProcessingException</code> instance.
      */
-    public ParsingException() {
+    public ProcessingException() {
         super();
     }
 
     /**
-     * Creates <code>ParsingException</code> instance.
+     * Creates <code>ProcessingException</code> instance.
      *
      * @param message the detail error message
      */
-    public ParsingException(String message) {
+    public ProcessingException(String message) {
         super(message);
     }
 
     /**
-     * Creates <code>ParsingException</code> instance.
+     * Creates <code>ProcessingException</code> instance.
      *
      * @param message the detail error message
      * @param cause   the cause of exception
      */
-    public ParsingException(String message, Throwable cause) {
+    public ProcessingException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Creates <code>ParsingException</code> instance.
+     * Creates <code>ProcessingException</code> instance.
      *
      * @param cause the cause of exception
      */
-    public ParsingException(Throwable cause) {
+    public ProcessingException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Creates <code>ParsingException</code> instance.
+     * Creates <code>ProcessingException</code> instance.
      *
      * @param message            the detail error message
      * @param cause              the cause of exception
@@ -49,7 +49,7 @@ public class ParsingException extends RuntimeException {
      * @param writableStackTrace whether or not the stack trace should be writable
      */
 
-    protected ParsingException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected ProcessingException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

@@ -11,7 +11,7 @@ public enum Command {
     EMPTY("empty", false, "Indicates empty command."),
     EXIT("exit", false, "Closes application."),
     COPY("cp", true, new ArrayList<>(2), "Copies the contents of a specified file to another file or copy a specified file to another directory."),
-    REPLACE_RENAME("mv", true, new ArrayList<>(2), "Replaces the specified file to another directory or renames the specified file."),
+    REPLACE("mv", true, new ArrayList<>(2), "Replaces the specified file to another directory or renames the specified file."),
     REMOVE("rm", true, new ArrayList<>(1), "Removes the specified file.");
 
     /**

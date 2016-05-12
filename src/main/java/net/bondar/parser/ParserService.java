@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Provides parsing user input arguments.
  */
-public class ParserService implements IParserService{
+public class ParserService implements IParserService {
 
     /**
      * Logger.
