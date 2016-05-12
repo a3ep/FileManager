@@ -70,6 +70,13 @@ public class CopyExecutor implements IExecutor {
                     + destinationFile.getAbsolutePath());
         } catch (IOException e) {
             log.error("Error during copying file " + sourceFile.getAbsolutePath() + ". Message " + e.getMessage());
+            try {
+                if (!destinationFile.delete())
+                    log.warn("Error while try to delete file " + destinationFile.getAbsolutePath());
+            } catch (SecurityException se) {
+                log.warn("Warning! Error while try to delete file " + destinationFile.getAbsolutePath() + ". Message: "
+                        + se.getMessage());
+            }
             throw new ExecutingException("Error during copying file " + sourceFile.getAbsolutePath() + ".", e);
         }
         return true;
@@ -110,10 +117,12 @@ public class CopyExecutor implements IExecutor {
      * @param finish source file length, finish position index
      * @throws IOException if error occurring while read/write bytes
      */
-    private void readWrite(final RandomAccessFile source, final RandomAccessFile output, final double finish) throws IOException {
+    private void readWrite(final RandomAccessFile source, final RandomAccessFile output, final double finish)
+            throws IOException {
         double start = 0;
         while (start < finish) {
-            byte[] array = new byte[getAvailableSize(finish, start, Integer.parseInt(configHolder.getValue("bufferSize")))];
+            byte[] array = new byte[getAvailableSize(finish, start,
+                    Integer.parseInt(configHolder.getValue("bufferSize")))];
             log.debug("Copying process: " + (int) ((start / finish) * 100) + "%, buffer = " + array.length);
             source.read(array);
             output.write(array);
