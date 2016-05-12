@@ -54,9 +54,14 @@ public class RemoveExecutor implements IExecutor {
         boolean result;
         log.info("Start removing file " + file.getAbsolutePath());
         try {
-            result = file.delete();
+            if(file.exists()){
+                result = file.delete();
+            }else{
+                log.error("Error during removing file " + file.getAbsolutePath() + ". Message: file not found.");
+                throw new ExecutingException("Error during removing file " + file.getAbsolutePath() + ". Message: file not found.");
+            }
         } catch (SecurityException e) {
-            log.error("Error during removing file " + file.getAbsolutePath() + ". Message " + e.getMessage());
+            log.error("Error during removing file " + file.getAbsolutePath() + ". Message: " + e.getMessage());
             throw new ExecutingException("Error during removing file " + file.getAbsolutePath() + ".", e);
         }
         log.info("Finish removing file " + file.getAbsolutePath());

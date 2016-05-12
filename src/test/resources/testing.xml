@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Processor test suit">
+    <test name="Processor test">
+        <classes>
+            <class name="net.bondar.test.ITestFileManagerProcessor" />
+        </classes>
+    </test>
+</suite>
