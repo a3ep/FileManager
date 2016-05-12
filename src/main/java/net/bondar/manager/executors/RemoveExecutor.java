@@ -27,7 +27,7 @@ public class RemoveExecutor implements IExecutor {
      * @throws ExecutingException if errors occurring while executing command
      */
     @Override
-    public synchronized boolean execute(final Command command) throws ExecutingException {
+    public boolean execute(final Command command) throws ExecutingException {
         return remove(new File(command.getParameters().get(0)));
     }
 

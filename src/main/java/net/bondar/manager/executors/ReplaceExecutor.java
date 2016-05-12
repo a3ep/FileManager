@@ -24,7 +24,7 @@ public class ReplaceExecutor implements IExecutor {
      * @return true if command successfully executed, otherwise false
      */
     @Override
-    public synchronized boolean execute(final Command command) {
+    public boolean execute(final Command command) {
         return replace(new File(command.getParameters().get(0)), new File(command.getParameters().get(1)));
     }
 

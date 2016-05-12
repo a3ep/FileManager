@@ -34,7 +34,7 @@ public class CopyExecutor implements IExecutor {
      * @throws ExecutingException if errors occurring while executing command
      */
     @Override
-    public synchronized boolean execute(final Command command) throws ExecutingException {
+    public boolean execute(final Command command) throws ExecutingException {
         return copy(new File(command.getParameters().get(0)), new File(command.getParameters().get(1)));
     }
 
@@ -71,8 +71,9 @@ public class CopyExecutor implements IExecutor {
         } catch (IOException e) {
             log.error("Error during copying file " + sourceFile.getAbsolutePath() + ". Message " + e.getMessage());
             try {
-                if (!destinationFile.delete())
+                if (!destinationFile.delete()) {
                     log.warn("Error while try to delete file " + destinationFile.getAbsolutePath());
+                }
             } catch (SecurityException se) {
                 log.warn("Warning! Error while try to delete file " + destinationFile.getAbsolutePath() + ". Message: "
                         + se.getMessage());
