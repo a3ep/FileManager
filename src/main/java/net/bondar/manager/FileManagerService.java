@@ -61,30 +61,15 @@ public class FileManagerService implements IService {
                 input = br.readLine();
                 log.debug("Introduced string -> " + input);
                 inputCommand = parserService.parse(input.split(" "));
-                switch (inputCommand) {
-                    case EXIT:
-                        log.debug("Closing resources...");
-                        br.close();
-                        log.debug("Application closed.");
-                        break;
-                    case COPY:
-                        if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
-                            inputCommand = Command.EXIT;
-                            break;
-                        }
-                        break;
-                    case REPLACE:
-                        if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
-                            inputCommand = Command.EXIT;
-                            break;
-                        }
-                        break;
-                    case REMOVE:
-                        if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
-                            inputCommand = Command.EXIT;
-                            break;
-                        }
-                        break;
+                if (inputCommand.equals(Command.EXIT) || inputCommand.equals(Command.EMPTY)) {
+                    log.debug("Closing resources...");
+                    br.close();
+                    log.debug("Application closed.");
+                    return;
+                } else {
+                    if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
+                        inputCommand = Command.EXIT;
+                    }
                 }
             } catch (ProcessingException | ParsingException e) {
                 log.error("File Manager Application error. Message: " + e.getMessage() + "\n");

@@ -1,14 +1,14 @@
 package net.bondar.manager.interfaces;
 
 /**
- * Provides file operation processing.
+ * Provides file command processing.
  */
 public interface IProcessor {
 
     /**
-     * Processes file operation.
+     * Processes file command.
      *
-     * @return true if process ok, otherwise false
+     * @return true if command processed successful, otherwise false
      */
     boolean process();
 }
