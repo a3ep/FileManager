@@ -16,7 +16,7 @@ public class ExecutorFactory implements IExecutorFactory {
      * @return concrete file command executor
      */
     @Override
-    public IExecutor createExecutor(Command command) {
+    public IExecutor createExecutor(final Command command) {
         if (command.equals(Command.COPY)) {
             return new CopyExecutor();
         } else if (command.equals(Command.REPLACE)) {

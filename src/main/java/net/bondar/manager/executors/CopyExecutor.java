@@ -34,7 +34,7 @@ public class CopyExecutor implements IExecutor {
      * @throws ExecutingException if errors occurring while executing command
      */
     @Override
-    public boolean execute(Command command) throws ExecutingException {
+    public synchronized boolean execute(final Command command) throws ExecutingException {
         return copy(new File(command.getParameters().get(0)), new File(command.getParameters().get(1)));
     }
 
@@ -46,7 +46,7 @@ public class CopyExecutor implements IExecutor {
      * @return true if the specified file successfully copied, otherwise false
      * @throws ExecutingException if errors occurring while copying file
      */
-    private boolean copy(File source, File destination) throws ExecutingException {
+    private boolean copy(final File source, final File destination) throws ExecutingException {
         return destination.isDirectory() ? copyFileToDirectory(source, destination)
                 : copyFileContent(source, destination);
     }
@@ -59,7 +59,7 @@ public class CopyExecutor implements IExecutor {
      * @return true if file copied successful, otherwise throws <code>{@link ExecutingException}</code>
      * @throws ExecutingException if <code>IOException</code> occurring while copying file
      */
-    private boolean copyFileContent(File sourceFile, File destinationFile) throws ExecutingException {
+    private boolean copyFileContent(final File sourceFile, final File destinationFile) throws ExecutingException {
         long finish = sourceFile.length();
         log.info("Start copying content of file " + sourceFile.getAbsolutePath() + " into file "
                 + destinationFile.getAbsolutePath());
@@ -83,7 +83,7 @@ public class CopyExecutor implements IExecutor {
      * @return true if the specified file copied successful, false if file already exist
      * @throws ExecutingException if path to destination file is invalid
      */
-    private boolean copyFileToDirectory(File sourceFile, File destinationDir) throws ExecutingException {
+    private boolean copyFileToDirectory(final File sourceFile, final File destinationDir) throws ExecutingException {
         log.info("Start copying file " + sourceFile.getAbsolutePath() + " into directory "
                 + destinationDir.getAbsolutePath());
         boolean result = false;
@@ -110,7 +110,7 @@ public class CopyExecutor implements IExecutor {
      * @param finish source file length, finish position index
      * @throws IOException if error occurring while read/write bytes
      */
-    private void readWrite(RandomAccessFile source, RandomAccessFile output, final double finish) throws IOException {
+    private void readWrite(final RandomAccessFile source, final RandomAccessFile output, final double finish) throws IOException {
         double start = 0;
         while (start < finish) {
             byte[] array = new byte[getAvailableSize(finish, start, Integer.parseInt(configHolder.getValue("bufferSize")))];

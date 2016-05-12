@@ -43,7 +43,7 @@ public class FileManagerService implements IService {
      * @param parserService   parser service.
      * @param executorFactory executor factory
      */
-    public FileManagerService(IParserService parserService, IExecutorFactory executorFactory) {
+    public FileManagerService(final IParserService parserService, final IExecutorFactory executorFactory) {
         this.parserService = parserService;
         this.executorFactory = executorFactory;
     }
@@ -68,31 +68,22 @@ public class FileManagerService implements IService {
                         log.debug("Application closed.");
                         break;
                     case COPY:
-                        log.debug("Start executing command " + inputCommand.name() + ", parameters: "
-                                + inputCommand.getParameters().toString());
                         if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
                             inputCommand = Command.EXIT;
                             break;
                         }
-                        log.debug("Finish executing command -> " + inputCommand.name() + "\n");
                         break;
                     case REPLACE:
-                        log.debug("Start executing command -> " + inputCommand.name() + ", parameters: "
-                                + inputCommand.getParameters().toString());
                         if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
                             inputCommand = Command.EXIT;
                             break;
                         }
-                        log.debug("Finish executing command -> " + inputCommand.name() + "\n");
                         break;
                     case REMOVE:
-                        log.debug("Start executing command -> " + inputCommand.name() + ", parameters: "
-                                + inputCommand.getParameters().toString());
                         if (!new FileManagerProcessor(inputCommand, executorFactory).process()) {
                             inputCommand = Command.EXIT;
                             break;
                         }
-                        log.debug("Finish executing command -> " + inputCommand.name() + "\n");
                         break;
                 }
             } catch (ProcessingException | ParsingException e) {

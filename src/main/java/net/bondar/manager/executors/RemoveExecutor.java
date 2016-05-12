@@ -27,7 +27,7 @@ public class RemoveExecutor implements IExecutor {
      * @throws ExecutingException if errors occurring while executing command
      */
     @Override
-    public boolean execute(Command command) throws ExecutingException {
+    public synchronized boolean execute(final Command command) throws ExecutingException {
         return remove(new File(command.getParameters().get(0)));
     }
 
@@ -38,7 +38,7 @@ public class RemoveExecutor implements IExecutor {
      * @return true if file/directory successfully removed, otherwise false
      * @throws ExecutingException if error occurring while removing file or directory
      */
-    private boolean remove(File file) throws ExecutingException {
+    private boolean remove(final File file) throws ExecutingException {
         return file.isDirectory() ? removeDirectory(file) : removeFile(file);
     }
 
@@ -50,7 +50,7 @@ public class RemoveExecutor implements IExecutor {
      * @throws ExecutingException if a security manager exists and its
      * <code>{@link java.lang.SecurityManager#checkRead(java.lang.String)}</code> method denies read access to the file
      */
-    private boolean removeFile(File file) throws ExecutingException {
+    private boolean removeFile(final File file) throws ExecutingException {
         boolean result;
         log.info("Start removing file " + file.getAbsolutePath());
         try {
@@ -70,7 +70,7 @@ public class RemoveExecutor implements IExecutor {
      * @return true if directory successfully removed, otherwise false
      * @throws ExecutingException if errors occurring while invoke <code>removeFile(File file)</code> method
      */
-    private boolean removeDirectory(File directory) throws ExecutingException {
+    private boolean removeDirectory(final File directory) throws ExecutingException {
         boolean result;
         log.info("Start removing directory " + directory.getAbsolutePath());
         if (directory.list().length == 0) {

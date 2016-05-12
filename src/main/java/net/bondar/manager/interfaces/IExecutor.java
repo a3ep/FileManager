@@ -15,5 +15,5 @@ public interface IExecutor {
      * @return true if command executed successful, otherwise false
      * @throws ExecutingException if errors occurring while executing command
      */
-    boolean execute(Command command) throws ExecutingException;
+    boolean execute(final Command command) throws ExecutingException;
 }

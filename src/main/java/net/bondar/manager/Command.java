@@ -21,7 +21,7 @@ public enum Command {
      * @param parametric  parametric value
      * @param description command description
      */
-    Command(String identifier, boolean parametric, List<String> parameters, String description) {
+    Command(final String identifier, final boolean parametric, List<String> parameters, String description) {
         this.identifier = identifier;
         this.parametric = parametric;
         this.parameters = parameters;
@@ -35,7 +35,7 @@ public enum Command {
      * @param parametric  parametric value
      * @param description command description
      */
-    Command(String identifier, boolean parametric, String description) {
+    Command(final String identifier, final boolean parametric, String description) {
         this.identifier = identifier;
         this.parametric = parametric;
         this.description = description;

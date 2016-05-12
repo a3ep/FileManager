@@ -27,7 +27,7 @@ public class ParserService implements IParserService {
      *
      * @param commandFinder command finder
      */
-    public ParserService(CommandFinder commandFinder) {
+    public ParserService(final CommandFinder commandFinder) {
         this.commandFinder = commandFinder;
     }
 
@@ -40,7 +40,7 @@ public class ParserService implements IParserService {
      * @see {@link IParserService}
      */
     @Override
-    public Command parse(String[] args) throws ParsingException {
+    public Command parse(final String[] args) throws ParsingException {
         log.info("Start parsing input arguments: " + Arrays.toString(args));
         List<String> argsList = Arrays.asList(args);
         try {

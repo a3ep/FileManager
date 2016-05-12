@@ -33,7 +33,7 @@ public class FileManagerProcessor implements IProcessor {
      *
      * @param command current command
      */
-    public FileManagerProcessor(Command command, IExecutorFactory executorFactory) {
+    public FileManagerProcessor(final Command command, final IExecutorFactory executorFactory) {
         this.command = command;
         this.executor = executorFactory.createExecutor(command);
     }
@@ -50,7 +50,7 @@ public class FileManagerProcessor implements IProcessor {
         try {
             log.debug("Executing command " + command.name());
             boolean result = executor.execute(command);
-            log.info("Finish processing command " + command.name() + ".");
+            log.info("Finish processing command " + command.name() + ".\n");
             return result;
         } catch (ExecutingException e) {
             log.error("Error while processing command " + command.name() + ". Current parameters: "

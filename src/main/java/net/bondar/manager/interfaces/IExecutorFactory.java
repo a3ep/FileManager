@@ -13,5 +13,5 @@ public interface IExecutorFactory {
      * @param command current command
      * @return concrete command executor
      */
-    IExecutor createExecutor(Command command);
+    IExecutor createExecutor(final Command command);
 }

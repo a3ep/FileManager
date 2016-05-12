@@ -24,7 +24,7 @@ public class ReplaceExecutor implements IExecutor {
      * @return true if command successfully executed, otherwise false
      */
     @Override
-    public boolean execute(Command command) {
+    public synchronized boolean execute(final Command command) {
         return replace(new File(command.getParameters().get(0)), new File(command.getParameters().get(1)));
     }
 
@@ -35,7 +35,7 @@ public class ReplaceExecutor implements IExecutor {
      * @param destination destination file/directory
      * @return true if file successfully replaced/renamed, otherwise false
      */
-    private boolean replace(File source, File destination) {
+    private boolean replace(final File source, final File destination) {
         String path;
         log.info("Start replacing file " + source.getAbsolutePath());
         if (destination.isDirectory()) {
